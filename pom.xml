@@ -105,6 +105,7 @@
         <module>webtau-json-schema</module>
         <module>webtau-data</module>
         <module>webtau-cache</module>
+        <module>webtau-database</module>
         <module>webtau-test-server</module>
         <module>webtau-groovy-ast</module>
         <module>webtau-groovy</module>

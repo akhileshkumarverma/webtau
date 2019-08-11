@@ -29,6 +29,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -124,6 +125,13 @@ public class GenericPageElement implements PageElement {
         execute(tokenizedMessage(action("clearing")).add(pathDescription),
                 () -> tokenizedMessage(action("cleared")).add(pathDescription),
                 () -> findElement().clear());
+    }
+
+    @Override
+    public void moveTo() {
+        execute(tokenizedMessage(action("moving mouse to")).add(pathDescription),
+                () -> tokenizedMessage(action("moved mouse to")).add(pathDescription),
+                () -> performActions("moveTo", Actions::moveToElement));
     }
 
     @Override
@@ -266,6 +274,24 @@ public class GenericPageElement implements PageElement {
         return elementsMeta.isEmpty() ? HtmlNode.NULL : new HtmlNode(elementsMeta.get(0));
     }
 
+    private void performActions(String actionLabel, ActionsProvider actionsProvider) {
+        WebElement element = findElement();
+        ensureNotNullElement(element, actionLabel);
+
+        new Actions(driver).moveToElement(element).pause(4000).build().perform();
+//        Actions actions = new Actions(driver).moveToElement(element).build().perform();
+//        actionsProvider.perform(actions, element);
+
+//        actions.build();
+//        actions.perform();
+    }
+
+    private void ensureNotNullElement(WebElement element, String actionLabel) {
+        if (element instanceof NullWebElement) {
+            ((NullWebElement) element).error(actionLabel);
+        }
+    }
+
     private NullWebElement createNullElement() {
         return new NullWebElement(path.toString());
     }
@@ -302,5 +328,9 @@ public class GenericPageElement implements PageElement {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private interface ActionsProvider {
+        void perform(Actions actions, WebElement element);
     }
 }

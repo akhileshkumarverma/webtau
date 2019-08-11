@@ -42,6 +42,7 @@ public interface PageElement extends ActualValueExpectations, WithTokenizedDescr
     void sendKeys(String keys);
     void click();
     void clear();
+    void moveTo();
 
     PageElement find(String css);
     PageElement find(ElementsFinder finder);

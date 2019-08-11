@@ -38,6 +38,7 @@ class WebTauUiFeaturesTest {
         testServer.registerGet("/special-forms", htmlResponse('special-forms.html'))
         testServer.registerGet("/calculation", htmlResponse('calculation.html'))
         testServer.registerGet("/finders-and-filters", htmlResponse('finders-and-filters.html'))
+        testServer.registerGet("/element-actions", htmlResponse('element-actions.html'))
         testServer.registerGet("/matchers", htmlResponse('matchers.html'))
         testServer.registerGet("/local-storage", htmlResponse('local-storage.html'))
         testServer.registerGet("/logged-in-user", htmlResponse('logged-in-user.html'))
@@ -84,6 +85,11 @@ class WebTauUiFeaturesTest {
     @Test
     void "finders and filters"() {
         runCli('findersFilters.groovy', 'webtau.cfg')
+    }
+
+    @Test
+    void "element actions"() {
+        runCli('elementActions.groovy', 'webtau.cfg')
     }
 
     @Test

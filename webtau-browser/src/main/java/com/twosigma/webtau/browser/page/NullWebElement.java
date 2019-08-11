@@ -36,6 +36,10 @@ public class NullWebElement implements WebElement {
         this.id = id;
     }
 
+    public static void error(String id, String action) {
+        throw new ElementNotFoundException("can't " + action + " as element is not found: " + id + ". Try to wait for it to appear first.");
+    }
+
     @Override
     public void click() {
         error("click");
@@ -122,7 +126,7 @@ public class NullWebElement implements WebElement {
         return null;
     }
 
-    private void error(String action) {
-        throw new ElementNotFoundException("can't " + action + " as element is not found: " + id + ". Try to wait for it to appear first.");
+    public void error(String action) {
+        error(id, action);
     }
 }

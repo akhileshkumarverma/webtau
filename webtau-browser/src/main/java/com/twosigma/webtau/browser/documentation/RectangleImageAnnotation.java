@@ -14,14 +14,12 @@
  * limitations under the License.
  */
 
-package scenarios.ui
+package com.twosigma.webtau.browser.documentation;
 
-import static com.twosigma.webtau.WebTauGroovyDsl.scenario
-import static pages.Pages.search
+import com.twosigma.webtau.browser.page.PageElement;
 
-scenario("use `shouldNot` to negate any matcher") {
-    search.open()
-    search.submit(query: "search this")
-
-    search.numberOfResults.shouldNot == 1
+public class RectangleImageAnnotation extends RectangleBasedImageAnnotation {
+    public RectangleImageAnnotation(PageElement pageElement, String text) {
+        super(pageElement, "rectangle", text);
+    }
 }

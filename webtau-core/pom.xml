@@ -21,11 +21,11 @@
     <parent>
         <groupId>com.twosigma.webtau</groupId>
         <artifactId>webtau-parent</artifactId>
-        <version>1.11-SNAPSHOT</version>
+        <version>1.12-SNAPSHOT</version>
     </parent>
 
     <artifactId>webtau-core</artifactId>
-    <version>1.11-SNAPSHOT</version>
+    <version>1.12-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
@@ -73,7 +73,6 @@
                 <executions>
                     <execution>
                         <goals>
-                            <goal>jar</goal>
                             <goal>test-jar</goal>
                         </goals>
                     </execution>
